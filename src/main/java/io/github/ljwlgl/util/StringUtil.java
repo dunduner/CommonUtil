@@ -1,5 +1,13 @@
 package io.github.ljwlgl.util;
 
+import com.google.common.base.Joiner;
+import com.google.common.base.Splitter;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
+
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -167,6 +175,50 @@ public class StringUtil {
         }
         builder.append(arr[j - 1]);
         return builder.toString().trim();
+    }
+
+    /**
+     * List 转 String
+     *
+     * @param list      集合
+     * @param separator 分隔符
+     * @param <E>
+     * @return
+     */
+    public static <E> String listToString(List<E> list, String separator) {
+        if (CollectionUtils.isEmpty(list)) {
+            return "";
+        }
+        return Joiner.on(separator).skipNulls().join(list);
+    }
+
+    /**
+     * String 转 List
+     *
+     * @param str       集合
+     * @param separator 分隔符
+     * @return
+     */
+    public static List<String> stringToList(String str, String separator) {
+        if (StringUtils.isBlank(str)) {
+            return Lists.newArrayList();
+        }
+        return Splitter.on(separator).trimResults().omitEmptyStrings().splitToList(str);
+    }
+
+    /**
+     * String 转 Map
+     *
+     * @param str
+     * @param separator    分隔符
+     * @param mapSeparator key:value分隔符
+     * @return
+     */
+    public static Map<String, String> stringToMap(String str, char separator, char mapSeparator) {
+        if (StringUtils.isBlank(str)) {
+            return Maps.newHashMap();
+        }
+        return Splitter.on(separator).trimResults().omitEmptyStrings().withKeyValueSeparator(mapSeparator).split(str);
     }
 
 }

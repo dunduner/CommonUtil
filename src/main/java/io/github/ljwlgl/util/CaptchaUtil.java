@@ -31,6 +31,13 @@ public class CaptchaUtil {
         return captcha.toString();
     }
 
+    public static void main(String[] args) {
+
+        System.out.println( genCaptcha(6));
+        BufferedImage bufferedImage = genCaptchaImg("1J2NHG");
+        System.out.println(bufferedImage);
+    }
+
     /**
      * 为一个验证码生成一个图片
      * <p>

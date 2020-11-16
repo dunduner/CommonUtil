@@ -35,6 +35,7 @@ public class DateUtil {
         return stringToDate(dateToShortDateString(c.getTime()));
     }
 
+
     /**
      * 比较两个时间是否是相同的天数
      */
@@ -62,6 +63,7 @@ public class DateUtil {
         return calcIntervalDays(stringToDate(dateStr1), stringToDate(dateStr2));
     }
 
+
     /**
      * 计算两个时间的间隔小时，只会整除
      */
@@ -76,7 +78,7 @@ public class DateUtil {
     }
 
     /**
-     * 计算两个时间的间隔小时，只会整除
+     * 计算两个时间的间隔分钟，只会整除
      */
     public static int calcIntervalMinutes(Date date1, Date date2) {
         if (date2.after(date1)) {
@@ -117,7 +119,7 @@ public class DateUtil {
     }
 
     /**
-     * 获取今天的分钟数，如今天18:05，则返回1805
+     * 获取今天的已经过去的分钟数，如今天11:13，则返回673
      */
     public static int getTodayMinutes() {
         Calendar ca = Calendar.getInstance();

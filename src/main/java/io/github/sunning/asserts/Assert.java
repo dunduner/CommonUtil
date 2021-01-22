@@ -8,7 +8,7 @@ import java.util.Objects;
 
 /**
  * 仿照Spring定制的验证类
- *
+ *dev11111
  * @author Quding Ding
  * @since 2018/5/5
  */

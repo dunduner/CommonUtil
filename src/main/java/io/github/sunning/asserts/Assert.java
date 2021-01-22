@@ -14,6 +14,9 @@ import java.util.Objects;
  */
 
 public class Assert {
+    public static void main(String[] args) {
+        System.out.println(1);
+    }
     public static void state(boolean expression, String message) {
         if (!expression) {
             throw new IllegalStateException(message);

@@ -17,19 +17,26 @@ public final class OptionalBean<T> {
 
     public static void main(String[] args) {
         User axin = new User();
-        User.School school = new User.School();
         axin.setName("hello");
+        User.School school = new User.School();
+        school.setAdress("上海市");
+        axin.setSchool(school);
         // 1. 基本调用
         String value1 = OptionalBean.ofNullable(axin)
                 .getBean(User::getSchool)
                 .getBean(User.School::getAdress).get();
-        System.out.println(value1);
+        System.out.println("1. 基本调用:"+value1);
 
         // 2. 扩展的 isPresent方法 用法与 Optional 一样
         boolean present = OptionalBean.ofNullable(axin)
                 .getBean(User::getSchool)
                 .getBean(User.School::getAdress).isPresent();
         System.out.println(present);
+
+        boolean present2 = OptionalBean.ofNullable(axin).isPresent();
+        boolean present1 = OptionalBean.ofNullable(axin).getBean(User::getSchool).isPresent();
+        boolean present3 = OptionalBean.ofNullable(axin).getBean(User::getSchool).getBean(User.School::getAdress).isPresent();
+        boolean present4 = OptionalBean.ofNullable(axin).getBean(User::getSchool).getBean(User.School::getScName).isPresent();
 
         // 3. 扩展的 ifPresent 方法
         OptionalBean.ofNullable(axin)
@@ -47,9 +54,9 @@ public final class OptionalBean<T> {
         try {
             String value3 = OptionalBean.ofNullable(axin)
                     .getBean(User::getSchool)
-                    .getBean(User.School::getAdress).orElseThrow(() -> new RuntimeException("空指针了"));
+                    .getBean(User.School::getAdress).orElseThrow(() -> new RuntimeException("空指针了-我是message的内容"));
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println("ExceptionMessage->"+e.getMessage());
         }
     }
 
@@ -98,8 +105,6 @@ public final class OptionalBean<T> {
 
     /**
      * 取出具体的值
-     *
-     * @param &lt;R&gt;
      * @return
      */
     public T get() {

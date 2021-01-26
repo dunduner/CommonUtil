@@ -31,7 +31,7 @@ public final class OptionalBean<T> {
         boolean present = OptionalBean.ofNullable(axin)
                 .getBean(User::getSchool)
                 .getBean(User.School::getAdress).isPresent();
-        System.out.println(present);
+        System.out.println("地址是否为空："+present);
 
         boolean present2 = OptionalBean.ofNullable(axin).isPresent();
         boolean present1 = OptionalBean.ofNullable(axin).getBean(User::getSchool).isPresent();
@@ -42,12 +42,14 @@ public final class OptionalBean<T> {
         OptionalBean.ofNullable(axin)
                 .getBean(User::getSchool)
                 .getBean(User.School::getAdress)
-                .ifPresent(adress -> System.out.println(String.format("地址存在:%s", adress)));
-
+                .ifPresent(val -> System.out.println(String.format("地址存在:%s", val)));
+        System.out.println("===================");
         // 4. 扩展的 orElse
+        //如果目标值为空 获取一个默认值
         String value2 = OptionalBean.ofNullable(axin)
                 .getBean(User::getSchool)
-                .getBean(User.School::getAdress).orElse("家里蹲");
+                .getBean(User.School::getAdress)
+                .orElse("家里蹲");
         System.out.println(value2);
 
         // 5. 扩展的 orElseThrow

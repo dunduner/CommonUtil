@@ -1,5 +1,7 @@
 package io.github.sunning.util.npe;
 
+import lombok.Data;
+
 import java.util.Objects;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -12,14 +14,51 @@ import java.util.function.Supplier;
  */
 public final class OptionalBean<T> {
 
+
+    public static void main(String[] args) {
+        User axin = new User();
+        User.School school = new User.School();
+        axin.setName("hello");
+        // 1. 基本调用
+        String value1 = OptionalBean.ofNullable(axin)
+                .getBean(User::getSchool)
+                .getBean(User.School::getAdress).get();
+        System.out.println(value1);
+
+        // 2. 扩展的 isPresent方法 用法与 Optional 一样
+        boolean present = OptionalBean.ofNullable(axin)
+                .getBean(User::getSchool)
+                .getBean(User.School::getAdress).isPresent();
+        System.out.println(present);
+
+        // 3. 扩展的 ifPresent 方法
+        OptionalBean.ofNullable(axin)
+                .getBean(User::getSchool)
+                .getBean(User.School::getAdress)
+                .ifPresent(adress -> System.out.println(String.format("地址存在:%s", adress)));
+
+        // 4. 扩展的 orElse
+        String value2 = OptionalBean.ofNullable(axin)
+                .getBean(User::getSchool)
+                .getBean(User.School::getAdress).orElse("家里蹲");
+        System.out.println(value2);
+
+        // 5. 扩展的 orElseThrow
+        try {
+            String value3 = OptionalBean.ofNullable(axin)
+                    .getBean(User::getSchool)
+                    .getBean(User.School::getAdress).orElseThrow(() -> new RuntimeException("空指针了"));
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
     private static final OptionalBean<?> EMPTY = new OptionalBean<>();
 
     private final T value;
 
     private OptionalBean() {
-
         this.value = null;
-
     }
 
     /**
@@ -27,21 +66,17 @@ public final class OptionalBean<T> {
      *
      * @param value
      */
-
     private OptionalBean(T value) {
-
         this.value = Objects.requireNonNull(value);
-
     }
 
     /**
      * 包装一个不能为空的 bean
      *
      * @param value
-     * @param &lt;T&gt;
+     * @param <T>
      * @return
      */
-
     public static <T> OptionalBean<T> of(T value) {
 
         return new OptionalBean<>(value);
@@ -52,10 +87,9 @@ public final class OptionalBean<T> {
      * 包装一个可能为空的 bean
      *
      * @param value
-     * @param &lt;T&gt;
+     * @param <T>
      * @return
      */
-
     public static <T> OptionalBean<T> ofNullable(T value) {
 
         return value == null ? empty() : of(value);
@@ -68,9 +102,7 @@ public final class OptionalBean<T> {
      * @param &lt;R&gt;
      * @return
      */
-
     public T get() {
-
         return Objects.isNull(value) ? null : value;
 
     }
@@ -79,14 +111,11 @@ public final class OptionalBean<T> {
      * 取出一个可能为空的对象
      *
      * @param fn
-     * @param &lt;R&gt;
+     * @param <R>
      * @return
      */
-
     public <R> OptionalBean<R> getBean(Function<? super T, ? extends R> fn) {
-
         return Objects.isNull(value) ? OptionalBean.empty() : OptionalBean.ofNullable(fn.apply(value));
-
     }
 
     /**
@@ -97,9 +126,7 @@ public final class OptionalBean<T> {
      */
 
     public T orElse(T other) {
-
         return value != null ? value : other;
-
     }
 
     /**
@@ -119,7 +146,7 @@ public final class OptionalBean<T> {
      * 如果目标值为空 抛出一个异常
      *
      * @param exceptionSupplier
-     * @param &lt;X&gt;
+     * @param <X>
      * @return
      * @throws X
      */
@@ -165,7 +192,7 @@ public final class OptionalBean<T> {
     /**
      * 空值常量
      *
-     * @param &lt;T&gt;
+     * @param <T>
      * @return
      */
 
@@ -183,3 +210,16 @@ public final class OptionalBean<T> {
 
 
 }
+@Data
+class User {
+    private String name;
+    private String gender;
+    private School school;
+    @Data
+    public static class School {
+        private String scName;
+        private String adress;
+    }
+
+}
+

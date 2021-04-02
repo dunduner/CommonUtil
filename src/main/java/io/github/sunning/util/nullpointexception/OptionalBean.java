@@ -1,4 +1,4 @@
-package io.github.sunning.util.npe;
+package io.github.sunning.util.nullpointexception;
 
 import lombok.Data;
 

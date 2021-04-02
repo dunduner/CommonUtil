@@ -19,12 +19,13 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
 /**
- * @author zqgan
+ * @author zhangning
  * @since 2018/9/1 http请求相关类
  */
 public class HttpUtil {
@@ -60,6 +61,13 @@ public class HttpUtil {
         get.setConfig(CONFIG);
         CloseableHttpResponse httpResponse = client.execute(get);
         return generateHttpResponse(httpResponse);
+    }
+
+    public static void main(String[] args) throws IOException {
+        Map<String, String> form = new HashMap<>();
+        form.put("userId","1116830");
+        String s = doPost("http://test.account.baozun.cn/uaac/userOrg/queryUserOrgByUserId",form);
+        System.out.println(s);
     }
 
     /**

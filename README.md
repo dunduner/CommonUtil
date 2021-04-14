@@ -263,7 +263,7 @@ public class EmailUtilTest {
 	- 发布2.0.7、2.0.8、2.0.9版本
     - 修复BigDecimalUtil错误的构造方法
     - 补充一些method的注释
-- 2020年06月
+- 2021年04月
     - 发布2.1.0版本
     - 新增CsvUtil、LangArabicNumConvertUtil、StringUtil
     - 补充单元测试	

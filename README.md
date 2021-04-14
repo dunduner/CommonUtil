@@ -195,7 +195,7 @@ csv作为开发常常需要处理的文件格式，本项目主要提供以下�
 
 ## Contributor
 
-下面是笔者收集的一些对本仓库提过有价值的pr或者issue的朋友，如果你也对本仓库提过不错的pr或者issue的话，你可以发邮件（2715815264@qq.com）与我联系。
+下面是笔者收集的一些对本仓库提过有价值的pr或者issue的朋友，如果你也对本仓库提过不错的pr或者issue的话，你可以发邮件（253013263@qq.com）与我联系。
 
 <a href="https://github.com/LJWLgl">
     <img src="https://avatars1.githubusercontent.com/u/22522146?s=460&u=34378925405f18325ea493aa7df788410d6204e3&v=4" width="45px">
@@ -263,7 +263,7 @@ public class EmailUtilTest {
 	- 发布2.0.7、2.0.8、2.0.9版本
     - 修复BigDecimalUtil错误的构造方法
     - 补充一些method的注释
-- 2020年06月
+- 2021年04月
     - 发布2.1.0版本
     - 新增CsvUtil、LangArabicNumConvertUtil、StringUtil
     - 补充单元测试	

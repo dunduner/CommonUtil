@@ -93,7 +93,7 @@ public class IpUtil {
 
         //方案二
         System.out.println("---------java判断一个IP地址是否在一个IP段之内，并判断该IP地址是否合法-----------");
-        if (ipIsValid("192.168.1.1-192.168.1.255", "192.168.1.54")) {
+        if (ipIsValid("192.168.0.1-192.168.3.255", "192.168.2.54")) {
             System.out.println("ip属于该网段");
         } else {
             System.out.println("ip不属于该网段");

@@ -98,7 +98,5 @@ public class IpUtil {
         } else {
             System.out.println("ip不属于该网段");
         }
-
-        //14:00
     }
 }
